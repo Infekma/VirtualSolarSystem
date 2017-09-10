@@ -12,6 +12,7 @@ Accurate planet dimension : diameter/orbit length/day length etc...
 
 Time scaling to increase speed of galaxy
 
+![solarsystemv0 1](https://user-images.githubusercontent.com/9573054/30247752-8b100852-9612-11e7-9cdb-d817b0cbf601.jpg)
 
 all solar system planet properties are a accurate approximation.
 

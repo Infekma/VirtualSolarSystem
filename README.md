@@ -23,6 +23,7 @@ Futurerevision will consider implementing gravity.
 #Credits:
 
 Credit for planet texture's, changing saturnmap.jpg to venusmap.jpg etc gives multiple excellent textures
+
 https://doc.qt.io/qt-5.6/images/used-in-examples/planets-qml/images/saturnmap.jpg
 
 

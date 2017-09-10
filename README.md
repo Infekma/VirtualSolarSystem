@@ -20,7 +20,7 @@ Current revision uses pre-defined orbits, calculated relative to the distance to
 
 Futurerevision will consider implementing gravity.
 
-#Credits:
+# Credits:
 
 Credit for planet texture's, changing saturnmap.jpg to venusmap.jpg etc gives multiple excellent textures
 

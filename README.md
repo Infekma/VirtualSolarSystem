@@ -19,3 +19,17 @@ All solar system planet properties are a accurate approximation.
 Current revision uses pre-defined orbits, calculated relative to the distance to the sun and the length of time to orbit around it.
 
 Futurerevision will consider implementing gravity.
+
+#Credits:
+
+https://doc.qt.io/qt-5.6/images/used-in-examples/planets-qml/images/saturnmap.jpg
+change jpg to planet+map.jpg
+
+Credit for planet diameter/distance from sun /spinlength/orbitlength
+https://www.bobthealien.co.uk/solarsystem/table.htm
+
+Credit for planet spin direction: (all using right hand rule)
+http://curious.astro.cornell.edu/about-us/56-our-solar-system/planets-and-dwarf-planets/general-questions/247-what-direction-do-planets-rotate-beginner
+
+Credit for planet axial tilt
+http://cseligman.com/text/sky/otherseasons.htm

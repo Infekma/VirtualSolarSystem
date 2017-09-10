@@ -22,14 +22,18 @@ Futurerevision will consider implementing gravity.
 
 #Credits:
 
+Credit for planet texture's, changing saturnmap.jpg to venusmap.jpg etc gives multiple excellent textures
 https://doc.qt.io/qt-5.6/images/used-in-examples/planets-qml/images/saturnmap.jpg
-change jpg to planet+map.jpg
+
 
 Credit for planet diameter/distance from sun /spinlength/orbitlength
+
 https://www.bobthealien.co.uk/solarsystem/table.htm
 
 Credit for planet spin direction: (all using right hand rule)
+
 http://curious.astro.cornell.edu/about-us/56-our-solar-system/planets-and-dwarf-planets/general-questions/247-what-direction-do-planets-rotate-beginner
 
 Credit for planet axial tilt
+
 http://cseligman.com/text/sky/otherseasons.htm

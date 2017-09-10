@@ -14,8 +14,8 @@ Time scaling to increase speed of galaxy
 
 ![solarsystemv0 1](https://user-images.githubusercontent.com/9573054/30247752-8b100852-9612-11e7-9cdb-d817b0cbf601.jpg)
 
-all solar system planet properties are a accurate approximation.
+All solar system planet properties are a accurate approximation.
 
 Current revision uses pre-defined orbits, calculated relative to the distance to the sun and the length of time to orbit around it.
 
-futher revision will consider implementing gravity.
+Futurerevision will consider implementing gravity.

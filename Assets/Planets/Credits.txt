@@ -1,0 +1,13 @@
+credit for planet material:
+https://doc.qt.io/qt-5.6/images/used-in-examples/planets-qml/images/saturnmap.jpg
+change jpg to planet+map.jpg
+
+
+credit for planet diameter/distance from sun /spinlength/orbitlength
+https://www.bobthealien.co.uk/solarsystem/table.htm
+
+credit for planet spin direction: (all using right hand rule)
+http://curious.astro.cornell.edu/about-us/56-our-solar-system/planets-and-dwarf-planets/general-questions/247-what-direction-do-planets-rotate-beginner
+
+credit for planet axial tilt
+http://cseligman.com/text/sky/otherseasons.htm

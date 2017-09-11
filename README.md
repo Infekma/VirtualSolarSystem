@@ -1,5 +1,5 @@
 # VirtualSolarSystem
-A project developed in Unity which implements a solar system which accurately maps the system as we know it.
+A project developed in Unity which implements a solar system which attempts to accurately maps the system as we know it.
 
 ## Solar System Properties & Implementations
 Distance scaling 1KM:10000KM
@@ -14,11 +14,11 @@ Time scaling to increase speed of galaxy
 
 ![solarsystemv0 1](https://user-images.githubusercontent.com/9573054/30247752-8b100852-9612-11e7-9cdb-d817b0cbf601.jpg)
 
-All solar system planet properties are a accurate approximation.
+All solar system planet properties are a approximation.
 
 Current revision uses pre-defined orbits, calculated relative to the distance to the sun and the length of time to orbit around it.
 
-Futurerevision will consider implementing gravity.
+Future revision will consider implementing gravity.
 
 # Credits:
 

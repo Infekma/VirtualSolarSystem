@@ -15,6 +15,7 @@ public class SolarSystem : MonoBehaviour {
     [SerializeField] GameObject mGlobe;
     [SerializeField] GameObject mGame;
     public static List<Planet> mPlanets = new List<Planet>();
+    Scrollbar mDateSlider;
     // Use this for initialization
     void Start()
     {
@@ -25,14 +26,17 @@ public class SolarSystem : MonoBehaviour {
         mTimeInfoText = GameObject.Find("Time Multiplier Text").GetComponent<Text>();
         mKmInfoText = GameObject.Find("KM Scale Text").GetComponent<Text>();
 
+        mDateSlider = GameObject.Find("Date Slider").GetComponent<Scrollbar>();
+
         mTimeSlider.value = timeMultiplier;
         mKmSlider.value = kmScale;
 
         ChangeTimeMultiplierInfoText(timeMultiplier.ToString());
         ChangeKmScaleInfoText(kmScale.ToString());
-        GameObject.Find("Sun").transform.localScale = new Vector3(1392000 / kmScale, 1392000 / kmScale, 1392000 / kmScale);
+        GameObject.Find("Sun").transform.localScale = new Vector3(1392000 /2/ kmScale*planetScale, 1392000 /2/ kmScale * planetScale, 1392000 /2/ kmScale * planetScale);
     }
 
+    #region UI Sliders functions (including km and time scale change)
     Slider mTimeSlider, mKmSlider;
     Text mTimeInfoText, mKmInfoText;
     public void ChangeTimeMultiplierInfoText(string text)
@@ -54,44 +58,30 @@ public class SolarSystem : MonoBehaviour {
         timeMultiplier = mTimeSlider.value;
         ChangeTimeMultiplierInfoText(mTimeSlider.value.ToString());
     }
-
-    // returns whether the mouse is current above the UI
-   public bool MouseAboveUI()
-    {
-        PointerEventData cursor = new PointerEventData(EventSystem.current);
-        cursor.position = Input.mousePosition;
-        List<RaycastResult> objectsHit = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(cursor, objectsHit);
-        if(objectsHit.Count > 0) // has hit a ui element
-        {
-            return true;
-        }
-        return false; // has not hit a ui element
-    }
+    #endregion
 
     // Update is called once per frame
     void Update()
     {
-        
-       /* if (Input.GetMouseButton(0) && !MouseAboveUI() )
-        {
-            if (!mouseWasDownLastFrame)
-            {
-                mouseWasDownLastFrame = true;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
 
-            if( MouseMoved())
-            {
-                Debug.Log("mouse down, updating");
-                UpdateGlobe();
-                UpdateAllPlanets();
-            }
+    }
+
+    float secondsInaDay = 60 * 60 * 24;
+    public void ChangeSolarSystemDate()
+    {
+        float dateInc = mDateSlider.value;
+        float midPoint = 0.5f;
+        float diff = dateInc - midPoint;
+
+        if(diff > 0){
+            timeMultiplier = secondsInaDay * (diff * 32);
+        }else if(diff < 0){
+            timeMultiplier = secondsInaDay * (diff * 32);
         }else{
-            mouseWasDownLastFrame = false;
-            Cursor.lockState = CursorLockMode.None;
-        }*/
-        
+            timeMultiplier = 1;
+        }
+
+        ChangeTimeMultiplierInfoText(timeMultiplier.ToString());
     }
 
     private void UpdateAllPlanets()
@@ -111,27 +101,5 @@ public class SolarSystem : MonoBehaviour {
         mouseMovement.z = 0;
 
         return mouseMovement != Vector3.zero;
-    }
-
-    private const float rotateSpeed = 1;
-    private void UpdateGlobe()
-    {
-        // difference defined by mouse axis movement
-        Vector3 difPos = mouseMovement;
-        difPos = new Vector3(difPos.y, -difPos.x, difPos.z);
-
-        // add current and new rotation together
-        Quaternion curRotation = mGlobe.transform.rotation;
-        mGlobe.transform.rotation = Quaternion.Euler(Vector3.zero);
-        mGlobe.transform.rotation *= Quaternion.Euler(difPos);
-        mGlobe.transform.rotation *= curRotation;
-    }
-
-
-    private float rotationFrequency;
-    private float rotationPerMinute;
-    private void RotateGlobe()
-    {
-        
     }
 }

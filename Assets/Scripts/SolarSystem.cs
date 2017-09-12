@@ -10,7 +10,7 @@ public class SolarSystem : MonoBehaviour {
     ///  vector2(1,1) == vector2(kmScale, kmScale);
     /// </summary>
     [SerializeField] public static float kmScale = 500000;
-    [SerializeField] public static float timeMultiplier = 10000;
+    [SerializeField] public static float timeMultiplier = 1;
     [SerializeField] public static float planetScale = 2500;
     [SerializeField] GameObject mGlobe;
     [SerializeField] GameObject mGame;
@@ -21,19 +21,28 @@ public class SolarSystem : MonoBehaviour {
     {
         mGame = GameObject.Find("Game");
         mGlobe = GameObject.Find("Solar System");
-        mTimeSlider = GameObject.Find("Time Slider").GetComponent<Slider>();
-        mKmSlider = GameObject.Find("KM Slider").GetComponent<Slider>();
+
+        try
+        {
+            mTimeSlider = GameObject.Find("Time Slider").GetComponent<Slider>();
+            mKmSlider = GameObject.Find("KM Slider").GetComponent<Slider>();
+        }
+        catch{        }
+
+
         mTimeInfoText = GameObject.Find("Time Multiplier Text").GetComponent<Text>();
         mKmInfoText = GameObject.Find("KM Scale Text").GetComponent<Text>();
 
         mDateSlider = GameObject.Find("Date Slider").GetComponent<Scrollbar>();
 
-        mTimeSlider.value = timeMultiplier;
+        if(mTimeSlider != null)
+         mTimeSlider.value = timeMultiplier;
+        if(mKmSlider != null)
         mKmSlider.value = kmScale;
 
-        ChangeTimeMultiplierInfoText(timeMultiplier.ToString());
+        ChangeTimeMultiplierInfoText((timeMultiplier / 60 / 60 / 24 / 31).ToString("0.00") + "months");
         ChangeKmScaleInfoText(kmScale.ToString());
-        GameObject.Find("Sun").transform.localScale = new Vector3(1392000 /2/ kmScale*planetScale, 1392000 /2/ kmScale * planetScale, 1392000 /2/ kmScale * planetScale);
+        GameObject.Find("Sun").transform.localScale = new Vector3(1392000 /2/kmScale * 100, 1392000 /2/ kmScale * 100, 1392000 /2/ kmScale * 100);
     }
 
     #region UI Sliders functions (including km and time scale change)
@@ -41,7 +50,7 @@ public class SolarSystem : MonoBehaviour {
     Text mTimeInfoText, mKmInfoText;
     public void ChangeTimeMultiplierInfoText(string text)
     {
-        mTimeInfoText.text = "1 Second = "+text+"s";
+        mTimeInfoText.text = "Speed = "+text+" /s";
     }
     public void ChangeKmScaleInfoText(string text)
     {
@@ -69,19 +78,22 @@ public class SolarSystem : MonoBehaviour {
     float secondsInaDay = 60 * 60 * 24;
     public void ChangeSolarSystemDate()
     {
-        float dateInc = mDateSlider.value;
-        float midPoint = 0.5f;
-        float diff = dateInc - midPoint;
+        if(mDateSlider != null) { 
+            float dateInc = mDateSlider.value;
+            float midPoint = 0.5f;
+            float diff = dateInc - midPoint;
 
-        if(diff > 0){
-            timeMultiplier = secondsInaDay * (diff * 32);
-        }else if(diff < 0){
-            timeMultiplier = secondsInaDay * (diff * 32);
-        }else{
-            timeMultiplier = 1;
+            if(diff > 0){
+                timeMultiplier = (secondsInaDay * 32 * diff * 2);
+            }
+            else if(diff < 0){
+                timeMultiplier = (secondsInaDay * 32 * diff * 2);
+            }else{
+                timeMultiplier = 1;
+            }
+
+            ChangeTimeMultiplierInfoText((timeMultiplier/60/60/24/31).ToString("0.00")+"months");
         }
-
-        ChangeTimeMultiplierInfoText(timeMultiplier.ToString());
     }
 
     private void UpdateAllPlanets()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Planet : MonoBehaviour {
 
@@ -11,9 +12,12 @@ public class Planet : MonoBehaviour {
     [SerializeField] bool eastSpinDirection, eastOrbitDirection;
     [SerializeField] float rotationAxis;
     [SerializeField] Vector3 rotation;
-    [SerializeField] float startingDay;
+    [SerializeField] float orbitDaysLeft;
+    [SerializeField] string planetName;
+    GameObject camera;
+    Text planetNameUI;
     // Use this for initialization
-	void Start () {
+    void Start () {
         ForceUpdate();
         SolarSystem.mPlanets.Add(this.GetComponent<Planet>());
 
@@ -22,11 +26,14 @@ public class Planet : MonoBehaviour {
 
         SetPlanetSize();
         SetStartingPosition();
+
+        planetNameUI = GameObject.Find(planetName + " Names").GetComponent<Text>();
+        camera = GameObject.Find("Main Camera");
     }
 
     void SetStartingPosition()
     {
-        float rotation = ((360) / dayLength) * startingDay;
+        float rotation = ((360) / orbitLength) * orbitDaysLeft;
         planet.transform.RotateAround(sun.transform.position, Vector3.up, rotation);
     }
 
@@ -51,14 +58,14 @@ public class Planet : MonoBehaviour {
         return new Vector3(diameter / 2, diameter / 2, diameter / 2);
     }
 
-    public Vector3 GetPlanetSizeRelativeToScale()
+    public Vector3 GetPlanetSizeRelativeToDistanceScale()
     {
         return new Vector3(diameter / 2 / SolarSystem.kmScale, diameter / 2 / SolarSystem.kmScale, diameter / 2 /SolarSystem.kmScale);
     }
 
     public void SetPlanetSize()
     {
-        float planScale = GetPlanetSizeRelativeToScale().z * SolarSystem.planetScale;
+        float planScale = GetPlanetSizeRelativeToDistanceScale().z * SolarSystem.planetScale;
         planet.transform.localScale = new Vector3(planScale, planScale, planScale);
     }
 
@@ -69,7 +76,7 @@ public class Planet : MonoBehaviour {
         {
             int totalSteps = (int)dayLength * orbitPathSmoothness; // total steps
             renderer.numPositions = totalSteps + 1; // total steps
-            float lineScale = 3 + (GetPlanetSizeRelativeToScale().z / SolarSystem.planetScale);
+            float lineScale = 3 + (GetPlanetSizeRelativeToDistanceScale().z / SolarSystem.planetScale);
             //float lineScale = 0.1f;
             renderer.startWidth = lineScale;
             renderer.endWidth =lineScale;
@@ -115,6 +122,9 @@ public class Planet : MonoBehaviour {
         {
             SetupPlanet();
         }
+
+        planetNameUI.transform.position = this.transform.position + new Vector3(0, GetPlanetSizeRelativeToDistanceScale().y/2 * SolarSystem.planetScale, 0);
+        planetNameUI.transform.LookAt(-camera.transform.position);
 	}
 
     public void ForceUpdate()

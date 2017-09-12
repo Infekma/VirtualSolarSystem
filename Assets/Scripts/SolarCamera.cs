@@ -31,7 +31,7 @@ public class SolarCamera : MonoBehaviour {
     public bool autoPilot = false;
     void Update()
     {
-        //CheckMouse();
+        CheckMouse();
         CheckKeyboard();
     }
     private float startingRotation = 25;
@@ -44,7 +44,7 @@ public class SolarCamera : MonoBehaviour {
         switch (mCameraState)
         {
             case CameraState.SolarSystem:
-                if (Input.GetMouseButton(0) && !MouseAboveUI())
+                /*if (Input.GetMouseButton(0) && !MouseAboveUI())
                 {
                     if (!mouseWasDownLastFrame)
                     {
@@ -60,7 +60,7 @@ public class SolarCamera : MonoBehaviour {
                 {
                     mouseWasDownLastFrame = false;
                     Cursor.lockState = CursorLockMode.None;
-                }
+                }*/
 
                 float d = Input.GetAxis("Mouse ScrollWheel");
                 if (d > 0f)

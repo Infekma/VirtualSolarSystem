@@ -1,5 +1,5 @@
 # VirtualSolarSystem
-A project developed in Unity which implements a solar system which attempts to accurately maps the system as we know it.
+A project developed in Unity in 1 week roughly, which implements a solar system that attempts to accurately map the system as we know it.
 
 https://github.com/InfekmaUni/VirtualSolarSystem/wiki/Planets for further information regarding the planets and the solar system
 

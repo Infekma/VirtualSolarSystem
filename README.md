@@ -1,7 +1,7 @@
 # VirtualSolarSystem
 A project developed in Unity in 1 week roughly, which implements a solar system that attempts to accurately map the system as we know it.
 
-## Current solar system properties:
+#### Current solar system properties:
 
 Distances are 1km:500000km;
 
